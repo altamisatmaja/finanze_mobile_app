@@ -1,4 +1,4 @@
-import 'package:finanze_mobile_app/screens/sign_up.dart';
+import 'package:finanze_mobile_app/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       home: SignUpScreen(),
     );
   }

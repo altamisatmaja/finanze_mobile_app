@@ -1,15 +1,16 @@
+import 'package:finanze_mobile_app/screens/sign_up_screen.dart';
 import 'package:finanze_mobile_app/utils/validator_handler.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  SignInScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-          const SnackBar(content: Text('Pendaftaran berhasil dilakukan')));
+      ScaffoldMessenger.of(_formKey.currentContext!)
+          .showSnackBar(const SnackBar(content: Text('Berhasil masuk')));
     }
   }
 
@@ -30,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
                   const SizedBox(
                     width: 250,
                     child: Text(
-                      'Buat akun baru',
+                      'Yuk, silahkan masuk',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -39,15 +40,6 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 50),
-                  TextFormField(
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration:
-                          _buildInputDecoration('Username', Icons.person),
-                      validator: validatorHandler.validateUsername),
-                  const SizedBox(height: 20),
                   TextFormField(
                     style: const TextStyle(
                       color: Colors.white,
@@ -59,14 +51,13 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration:
-                        _buildInputDecoration('Password', Icons.password),
-                    validator: validatorHandler.validatePassword
-                  ),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration:
+                          _buildInputDecoration('Password', Icons.password),
+                      validator: validatorHandler.validatePassword),
                   const SizedBox(height: 50),
                   SizedBox(
                       height: 50,
@@ -78,7 +69,7 @@ class SignUpScreen extends StatelessWidget {
                               backgroundColor: Colors.white),
                           onPressed: _submitForm,
                           child: const Text(
-                            'Daftar',
+                            'Masuk',
                             style: TextStyle(color: Colors.black),
                           ))),
                   const SizedBox(height: 20),
@@ -91,9 +82,14 @@ class SignUpScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
                               backgroundColor: Colors.transparent),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpScreen()));
+                          },
                           child: const Text(
-                            'Login',
+                            'Daftar',
                             style: TextStyle(color: Colors.white),
                           )))
                 ],
@@ -104,32 +100,31 @@ class SignUpScreen extends StatelessWidget {
   }
 
   InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
-  return InputDecoration(
-    fillColor: const Color(0xAA494A59),
-    filled: true,
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.white),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.white),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.red),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.red),
-    ),
-    labelStyle: const TextStyle(color: Colors.white),
-    labelText: label,
-    suffixIcon: Icon(
-      suffixIcon,
-      color: Colors.white,
-    ),
-  );
-}
-
+    return InputDecoration(
+      fillColor: const Color(0xAA494A59),
+      filled: true,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: const BorderSide(color: Colors.white),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: const BorderSide(color: Colors.white),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: const BorderSide(color: Colors.red),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: const BorderSide(color: Colors.red),
+      ),
+      labelStyle: const TextStyle(color: Colors.white),
+      labelText: label,
+      suffixIcon: Icon(
+        suffixIcon,
+        color: Colors.white,
+      ),
+    );
+  }
 }
